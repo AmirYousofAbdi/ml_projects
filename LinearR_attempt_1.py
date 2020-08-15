@@ -1,3 +1,8 @@
+##########
+##########                      Notice that this code will return the average of accuracy of n times prediction and it would predict the last column! 
+##########
+
+
 from sklearn import linear_model
 import pandas as pd
 from sklearn.model_selection import train_test_split
