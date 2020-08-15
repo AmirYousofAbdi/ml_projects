@@ -5,18 +5,24 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder as le
 
 
+
 def csv2d(file = 'iris_flower_data.csv'):
 
-    classes = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
+    my_file = open(file, 'r')
+    column_number = len(my_file.readline().split(','))
+
+    classes = [str(each_column) for each_column in range(column_number)]
+
+    column_number -= 1
 
     dataset = pd.read_csv(file ,names = classes)
 
     encoder = le()
-    dataset['class'] = encoder.fit_transform(dataset['class'])
+    dataset[str(column_number)] = encoder.fit_transform(dataset[str(column_number)])
 
     global x,y
 
-    x , y  = dataset.drop('class',axis = 1) , dataset['class']
+    x , y  = dataset.drop(str(column_number),axis = 1) , dataset[str(column_number)]
 
 
 
@@ -26,12 +32,12 @@ def pred():
 
     x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.20)
 
-    linear = linear_model.LogisticRegression()
+    log = linear_model.LogisticRegression()
 
-    linear.fit(x_train,y_train)
+    log.fit(x_train,y_train)
 
 
-    y_predict = list(linear.predict(x_test))
+    y_predict = list(log.predict(x_test))
 
     y_test = list(y_test)
 
