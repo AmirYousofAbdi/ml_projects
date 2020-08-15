@@ -58,4 +58,4 @@ avg_pred_acc = 0
 for i in range(number_pred):
     avg_pred_acc += pred()
 
-print(f"The avrage of accuracies are:{avg_pred_acc/number_pred}")
+print(f"The average of accuracies are:{avg_pred_acc/number_pred}")
